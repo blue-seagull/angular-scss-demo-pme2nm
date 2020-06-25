@@ -1,0 +1,77 @@
+<span
+    (click)="weeklyPatternClicked(i)"
+    *ngFor="let d of ['lundi','mardi','mercredi','jeudi','vendredi']; let i = index"
+    [ngClass]="{period_weekly_pattern_active:weeklyPattern[i], clickable:editable}"
+    [pTooltip]="weeklyPattern[i]?null:'disponible les '+ d"
+> {{d|slice:0:2|titlecase}} </span>
+
+<div class="input-frame">
+    <table *ngIf="['lundi','mardi','mercredi','jeudi','vendredi'] as weekDays">
+        <tr>
+            <th></th>
+            <th
+                *ngFor="
+                    let d of weekDays;
+                    let i = index;
+                    let first = first;
+                    let last = last;
+                "
+                (click)="weeklyPattern.dailyPatterns[i].toggleWholeDay()"
+                [ngClass]="{ left: first, right: last , clickable:editable}"
+                [pTooltip]="weeklyPattern.dailyPatterns[i].switch(
+                    'Disponible le ' + d + ' toute la journée',
+                    'Disponible le ' + d + ' matin',
+                    'Disponible le ' + d + ' après-midi',
+                    'Indisponible le ' + d + ' toute la journée')"
+            >
+                {{d|slice:0:2|titlecase}}
+            </th>
+        </tr>
+        <tr>
+            <th>MA</th>
+            <td
+                *ngFor="
+                    let d of weekDays;
+                    let i = index;
+                    let first = first;
+                    let last = last;
+                "
+                [ngClass]="{
+                    present:weeklyPattern.dailyPatterns[i].morning,
+                    left: first,
+                    right: last
+                }"
+                (click)="weeklyPattern.dailyPatterns[i].toggleMorning()"
+                [pTooltip]="weeklyPattern.dailyPatterns[i].switch(
+                    'Disponible le ' + d + ' toute la journée',
+                    'Disponible le ' + d + ' matin',
+                    'Disponible le ' + d + ' après-midi',
+                    'Indisponible le ' + d + ' toute la journée')"
+            >
+            </td>
+        </tr>
+        <tr>
+            <th>AM</th>
+            <td
+                *ngFor="
+                    let d of weekDays;
+                    let i = index;
+                    let first = first;
+                    let last = last;
+                "
+                [ngClass]="{
+                    present:weeklyPattern.dailyPatterns[i].afternoon,
+                    left: first,
+                    right: last
+                }"
+                (click)="weeklyPattern.dailyPatterns[i].toggleAfternoon()"
+                [pTooltip]="weeklyPattern.dailyPatterns[i].switch(
+                    'Disponible le ' + d + ' toute la journée',
+                    'Disponible le ' + d + ' matin',
+                    'Disponible le ' + d + ' après-midi',
+                    'Indisponible le ' + d + ' toute la journée')"
+            >
+            </td>
+        </tr>
+    </table>
+</div>

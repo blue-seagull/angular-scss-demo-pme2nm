@@ -1,0 +1,12 @@
+{"compilerOptions": {
+  "paths": {
+    "@oae-shared/*": [
+      "src/app/_shared/*",
+      "./_shared/*",
+      "../_shared/*",
+      "../../_shared/*",
+      "../../../_shared/*",
+      "../../../../../_shared/*"
+    ]
+  }
+}}
