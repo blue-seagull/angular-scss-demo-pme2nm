@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {WeeklyPattern} from '@shared/language-referential/unavailabilityPeriod';
+import {WeeklyPattern} from '@oae-shared/language-referential/unavailabilityPeriod';
 
 @Component({
     selector: 'oae-weekly-pattern',
